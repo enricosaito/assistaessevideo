@@ -4,11 +4,27 @@
     <title>Meu site</title>
   </head>
   <body>
-    <!-- Conteúdo HTML aqui -->
+    <div id="root"></div>
 
-    <!-- Adicionando o arquivo JavaScript -->
-    <script src="arquivo.js"></script>
+    <script>
+      // Função para ler o arquivo JSON
+      function getData() {
+        return fetch("template.json")
+          .then(response => response.json())
+          .catch(error => console.error(error));
+      }
+
+      // Função para renderizar o HTML com base no JSON
+      function render(data) {
+        const root = document.getElementById("root");
+        root.innerHTML = `
+          <h1>${data.title}</h1>
+          <p>${data.description}</p>
+        `;
+      }
+
+      // Lê o arquivo JSON e renderiza o HTML
+      getData().then(render);
+    </script>
   </body>
 </html>
-
-fetch(elementor-250-2022-12-15.json)
